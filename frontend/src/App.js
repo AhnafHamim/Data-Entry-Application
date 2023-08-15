@@ -4,42 +4,33 @@ import axios from "axios";
 import Header from "./components/Header";
 import Subheader from "./components/Subheader";
 import Table from "./components/Table";
-import Button from "./components/Button";
+import FormDialog from "./components/FormDialog";
 import Container from "@mui/material/Container";
+
 function App() {
-  const [patients, setPatients] = useState([]);
+  const [database, setDatabase] = useState([]);
+  const [statusCode, setStatusCode] = useState('');
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:3000/patients")
+      .get("http://127.0.0.1:3000/database")
       .then((response) => {
-        setPatients(response.data.members);
+        console.log(Object.entries(response.data));
+        setDatabase(Object.entries(response.data));
       })
       .catch((error) => {
         console.log(console.error(error));
       });
-  }, []);
+      setStatusCode('');
+  }, [statusCode]);
   return (
     <div>
-      {/* <Header />
+      <Header />
       <Subheader />
       <Container>
-        <Table />
-        <Button text="Add Entry" />
-        <Button text="Delete Entry" />
-      </Container> */}
-
-      <ul>
-        {patients.map(patient => (
-          <li key={patient.email}>
-            <p>Name: {patient.fname} {patient.lname}</p>
-            <p>Age: {patient.age}</p>
-            <p>Email: {patient.email}</p>
-            <p>Location: {patient.city}, {patient.state}</p>
-          </li>
-        ))}
-      </ul>
+        <Table data={database} setStatusCode={setStatusCode} />
+        <FormDialog text="Add Entry"  setStatusCode={setStatusCode} />
+      </Container>
     </div>
   );
 }
-
 export default App;
