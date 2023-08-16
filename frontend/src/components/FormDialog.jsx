@@ -49,7 +49,7 @@ export default function FormDialog(props) {
     }
 
     axios
-      .post("http://127.0.0.1:3000/add", data, {
+      .post("https://ahnafhamim.pythonanywhere.com/add", data, {
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {
@@ -89,7 +89,6 @@ export default function FormDialog(props) {
             onChange={(e) => setFname(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
           <TextField
             autoFocus
@@ -100,7 +99,6 @@ export default function FormDialog(props) {
             onChange={(e) => setLname(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
           <TextField
             autoFocus
@@ -111,7 +109,6 @@ export default function FormDialog(props) {
             onChange={(e) => setAge(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
           <TextField
             autoFocus
@@ -122,7 +119,6 @@ export default function FormDialog(props) {
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
           <TextField
             autoFocus
@@ -133,7 +129,6 @@ export default function FormDialog(props) {
             onChange={(e) => setState(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
           <TextField
             autoFocus
@@ -144,7 +139,6 @@ export default function FormDialog(props) {
             onChange={(e) => setCity(e.target.value)}
             fullWidth
             variant="standard"
-            
           />
         </DialogContent>
         <DialogActions>

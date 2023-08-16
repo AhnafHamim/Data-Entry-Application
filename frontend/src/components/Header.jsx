@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
     return (
-        <h1>OpenAvenues Data Scrubber Application</h1>
+        <h1>Data Entry Application</h1>
     );
 };
 

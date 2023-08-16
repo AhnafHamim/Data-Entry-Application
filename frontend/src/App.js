@@ -9,10 +9,10 @@ import Container from "@mui/material/Container";
 
 function App() {
   const [database, setDatabase] = useState([]);
-  const [statusCode, setStatusCode] = useState('');
+  const [statusCode, setStatusCode] = useState("");
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:3000/database")
+      .get("https://ahnafhamim.pythonanywhere.com/database")
       .then((response) => {
         console.log(Object.entries(response.data));
         setDatabase(Object.entries(response.data));
@@ -20,7 +20,7 @@ function App() {
       .catch((error) => {
         console.log(console.error(error));
       });
-      setStatusCode('');
+    setStatusCode("");
   }, [statusCode]);
   return (
     <div>
@@ -28,7 +28,7 @@ function App() {
       <Subheader />
       <Container>
         <Table data={database} setStatusCode={setStatusCode} />
-        <FormDialog text="Add Entry"  setStatusCode={setStatusCode} />
+        <FormDialog text="Add Entry" setStatusCode={setStatusCode} />
       </Container>
     </div>
   );

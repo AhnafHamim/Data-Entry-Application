@@ -15,8 +15,8 @@ export default function BasicTable(props) {
   const handleDelete = (key) => {
     console.log(key);
     axios
-      .delete("http://127.0.0.1:3000/delete", {
-        data: {key},
+      .delete("https://ahnafhamim.pythonanywhere.com/delete", {
+        data: { key },
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {

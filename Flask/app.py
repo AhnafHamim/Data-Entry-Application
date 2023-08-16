@@ -3,8 +3,8 @@ import firebase_admin
 from firebase_admin import credentials, db
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
-patient = Flask(__name__)
-CORS(patient, resources={r"/*": {"origins": "*", "methods": ["GET", "HEAD", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"]}})
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "HEAD", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"]}})
 
 cred = credentials.Certificate("key.json")
 
@@ -26,13 +26,13 @@ def add_user(fname, lname, age, email, state, city):
     )
 def get_users():
     return ref.get()
-@patient.route("/")
+@app.route("/")
 def introduction():
     return """
     <h1>Welcome to the Patient API!</h1>
     <p>Click <a href="/database">here</a> to view the list of patients.</p>
     """
-@patient.route("/add", methods=["POST"])
+@app.route("/add", methods=["POST"])
 @cross_origin()
 def add():
     data = request.get_json()
@@ -41,7 +41,7 @@ def add():
     add_user(data["fname"], data["lname"], data["age"], data["email"], data["state"], data["city"])
     return jsonify(ref.get())
 
-@patient.route("/delete", methods=["DELETE"])
+@app.route("/delete", methods=["DELETE"])
 @cross_origin()
 def delete():
     # return 'hello'
@@ -51,9 +51,9 @@ def delete():
     ref.child(data["key"]).delete()
     return jsonify(ref.get())
 
-@patient.route("/database")
+@app.route("/database")
 def databaseList():
     return jsonify(ref.get())
 
 if __name__ == "__main__":
-    patient.run(debug=True, port=3000)
+    app.run(debug=True, port=3000)
