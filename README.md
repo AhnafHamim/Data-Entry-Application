@@ -1,8 +1,6 @@
 # Data Entry Application
 
-This repository contains a data entry application built with a Flask backend and a React frontend.  
-
-Working Link: ahnafhamim-dataentry.netlify.app
+This repository contains a data entry application built with a Flask backend and a React frontend.  Here is a working link: ahnafhamim-dataentry.netlify.app
 
 ## Structure
 
